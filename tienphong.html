@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="in">IN</label>
+        <input type="date" value="datein" id="in">
+        <label for="out">OUT</label>
+        <input type="date" value="dateout" id="out">
+        <select id="loaiphong" onchange="kiemTraGiaPhong()">
+            <option value="500000" >A</option>
+            <option value="450000" >B</option>
+            <option value="350000" >C</option>
+        </select>
+        <p>Giá phòng: <span id="giaphong"></span></p>
+        <button type="button" onclick="thanhtoan()">THANH TOÁN</button>
+    </form>
+
+    <h3>Số ngày: <span id="rsday"></span></h3>
+    <h2>Tổng tiền: <span id="rstongtien"></span></h2>
+
+
+    <script>
+        function kiemTraGiaPhong() {
+            var selectedValue = document.getElementById("loaiphong").value;
+            document.getElementById("giaphong").innerHTML = selectedValue;
+        }
+
+        function thanhtoan() {
+            let txtDate1 = document.querySelector("#in").value;
+            let txtDate2 = document.querySelector("#out").value;
+
+            if(txtDate1 == "" || txtDate2 == ""){
+                alert("vui long nhap ngay");
+                return; // duwnfg lai 
+            }
+
+            var d1 = new Date(txtDate1);
+            var d2 = new Date(txtDate2);
+
+            if(d2.getTime() < d1.getTime()){
+                alert("vui long kiem tra lai du lieu");
+                return; // duwnfg lai 
+            }
+
+            var diffMiliseconds = d2.getTime() - d1.getTime();
+            var diffDays = diffMiliseconds / (1000 * 60 * 60 * 24);
+
+            document.querySelector("#rsday").innerHTML = diffDays;
+
+            var price = document.getElementById("loaiphong").value;
+            price = parseInt(price);
+
+            if(diffDays > 7){
+                price = price * 0.9;
+            }
+
+            document.querySelector("#rstongtien").innerHTML = (diffDays * price) + " VNĐ";
+            
+          
+        }
+
+
+        kiemTraGiaPhong();
+    </script>
+</body>
+</html>
