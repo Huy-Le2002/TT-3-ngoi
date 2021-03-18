@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>
+        function generateMatrix(size,min,max){
+            let matrix = [];
+            for(let i=0; i< size; i++){
+                let arr =[];
+                for(let j=0;j<size;j++){
+                    arr[j] = Math.floor(Math.random()*(max-min+1) + min);
+                }
+                matrix.push(arr);
+            }
+            return matrix;
+
+        }
+        // function totalEvenInMatrix(matrix) {
+        //     let total = 0;
+        //     for(let i = 0; i<matrix.length;i++) {
+        //         for(let j = 0;j<matrix.length;j++) {
+        //             if(matrix[i][j] % 2 == 0) {
+        //                 total += matrix[i][j];
+        //             }
+        //         }
+        //     } return total;
+        // } 
+        function totalEvenInMatrix(matrix) {
+            let total = 0;
+            for(let i = 0; i<matrix.length;i++) {
+                for(let j = 0;j<matrix.length;j++) {
+                    if(isEven(matrix[i][j])) {
+                        total += matrix[i][j];
+                    }
+                }
+            } return total;
+        } 
+        function isEven(number) {
+            return number%2==0;
+
+            // return(number%2==0) ? true : false
+
+            // if(number%2==0) {
+            //     return true;
+            // } else {
+            //     return false;
+            // }
+        }
+        function totalMainCross(matrix) {
+            let total = 0;
+            for (let i=0;i<matrix.length;i++) {
+                for (let j=0;j<matrix.length;j++) {
+                    if(i==j) {
+                        total = total + matrix[i][j];
+                    }
+                }
+            } return total;
+        }
+        // function totalMainCross(matrix) {
+        //     let total = 0;
+        //     for(let i=0;i<matrix.length;i++) {
+        //         total += matrix[i][j];
+        //     }
+        //     return total;
+        // }
+
+        function totalSecondCross(maxtrix) {
+            let total = 0;
+            for (let i=maxtrix.length-1;i>=0;i++) {
+                total += maxtrix[i][length-i-1]
+            }
+        }
+
+        function sumBorder(matrix){
+            let sum_DP = 0;
+            for(let i = 0;i<matrix.length;i++){
+                for(let j = 0;j<matrix.length;j++) {
+                    if(i==0 || i==matrix.length -1 || j==0 || j==matrix.length -1) {
+                        sum_DP = sum_DP + matrix[i][j];
+
+                    }
+                }
+            } return sum_DP;
+        }
+
+         
+    </script>
+</body>
+</html>
